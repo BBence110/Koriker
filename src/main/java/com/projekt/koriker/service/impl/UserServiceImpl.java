@@ -36,5 +36,11 @@ public class UserServiceImpl implements UserService{
         UserEntity user = userRepository.findByUsername(username).orElse(null);
         return userMapper.toDto(user);
     }
+    @Override
+    public java.util.List<UserDto> findAllUsers() {
+        return userRepository.findAll().stream()
+                .map(userMapper::toDto)
+                .collect(java.util.stream.Collectors.toList());
+    }
     
 }
