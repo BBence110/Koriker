@@ -3,8 +3,8 @@ package com.projekt.koriker.service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.projekt.koriker.entity.UserEntity;
-import com.projekt.koriker.repository.UserRepository;
+import com.projekt.koriker.data.entity.UserEntity;
+import com.projekt.koriker.data.repository.UserRepository;
 
 @Service
 public class UserService {

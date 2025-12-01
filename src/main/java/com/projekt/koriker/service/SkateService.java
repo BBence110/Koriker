@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.projekt.koriker.entity.SkateEntity;
-import com.projekt.koriker.repository.SkateRepository;
+import com.projekt.koriker.data.entity.SkateEntity;
+import com.projekt.koriker.data.repository.SkateRepository;
 
 @Service
 public class SkateService {

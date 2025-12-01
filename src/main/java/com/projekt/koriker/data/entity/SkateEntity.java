@@ -1,4 +1,4 @@
-package com.projekt.koriker.entity;
+package com.projekt.koriker.data.entity;
 
 import java.util.List;
 
