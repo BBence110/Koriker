@@ -8,7 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+//import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +16,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name="skates")
 public class SkateEntity {
@@ -33,4 +32,10 @@ public class SkateEntity {
     @OneToMany(mappedBy = "skate")
     private List<RentalEntity> rentals;
 
+    public SkateEntity(Integer size, String type, String color, boolean available) {
+        this.size = size;
+        this.type = type;
+        this.color = color;
+        this.available = available;
+    }
 }
