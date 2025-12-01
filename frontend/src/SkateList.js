@@ -173,7 +173,7 @@ const SkateList = () => {
                         <li key={rental.id} className={rental.active ? 'active-rental' : 'closed-rental'}>
                             <span>
                                 <strong>{rental.skate.type}</strong> (Méret: {rental.skate.size}) 
-                                - {rental.active ? " 🟢 Aktív" : " ⚫ Lezárva"}
+                                - {rental.active ? " ✅ Aktív" : "❌ Lezárva"}
                             </span>
                             {rental.active && (
                                 <button onClick={() => handleReturn(rental.id)} className="return-btn">Visszavétel</button>
