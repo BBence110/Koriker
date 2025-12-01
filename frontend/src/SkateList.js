@@ -6,7 +6,6 @@ const SkateList = () => {
     const [skates, setSkates] = useState([]);
     const [myRentals, setMyRentals] = useState([]);
     
-    // Új korcsolya űrlap state
     const [newSkate, setNewSkate] = useState({ type: 'Hoki', size: '38', color: '' });
     
     const navigate = useNavigate();
@@ -33,8 +32,14 @@ const SkateList = () => {
             console.error(error);
         }
     };
+    
+    const getSkateIcon = (type) => {
+        if (type.includes('Hoki')) return '🏒';
+        if (type.includes('Műkorcsolya')) return '❄️';
+        if (type.includes('Gyerek')) return '⛄';
+        return '🎁'; // Egyéb
+    };
 
-    // --- ADMIN FUNKCIÓ: Létrehozás ---
     const handleAddSkate = async (e) => {
         e.preventDefault();
         try {
@@ -42,14 +47,13 @@ const SkateList = () => {
                 headers: { Authorization: `Bearer ${token}` }
             });
             alert("Korcsolya hozzáadva!");
-            setNewSkate({ type: 'Hoki', size: '38', color: '' }); // Reset
-            fetchData(); // Lista frissítése
+            setNewSkate({ type: 'Hoki', size: '38', color: '' }); 
+            fetchData(); 
         } catch (error) {
-            alert("Hiba a hozzáadáskor! (Csak admin joggal)");
+            alert("Hiba a hozzáadáskor!");
         }
     };
 
-    // --- ADMIN FUNKCIÓ: Törlés ---
     const handleDeleteSkate = async (id) => {
         if(!window.confirm("Biztosan törlöd?")) return;
         try {
@@ -95,25 +99,24 @@ const SkateList = () => {
         <div className="container">
             <header className="header">
                 <div>
-                    <h1>⛸️ Jégkorcsolya Kölcsönző</h1>
-                    <p>Üdvözöllek, <strong>{username}</strong>! ({role === 'ROLE_ADMIN' ? 'Adminisztrátor' : 'Felhasználó'})</p>
+                    <h1>⛸️ Jégkorcsolya Kölcsönző ⛸️</h1>
+                    <p>Üdvözöllek, <strong>{username}</strong> a korcsolya foglaló oldalamon! ({role === 'ROLE_ADMIN' ? 'Adminisztrátor' : 'Felhasználó'})</p>
                 </div>
                 <button onClick={logout} className="logout-btn">Kijelentkezés</button>
             </header>
             
             {role === 'ROLE_ADMIN' && (
                 <div className="card" style={{marginBottom: '30px', border: '2px solid #007bff'}}>
-                    <h3>➕ Új Korcsolya Felvétele</h3>
+                    <h3>➕ Új Korcsolya Felvétele ➕</h3>
                     <form onSubmit={handleAddSkate} style={{display:'flex', gap:'10px', justifyContent:'center', flexWrap:'wrap'}}>
                         <select 
                             value={newSkate.type} 
                             onChange={(e) => setNewSkate({...newSkate, type: e.target.value})}
                             style={{padding:'10px'}}
                         >
-                            <option value="Hoki">🏒 Hoki</option>
-                            <option value="Műkorcsolya">⛸️ Műkorcsolya</option>
-                            <option value="Gyerek">👶 Gyerek</option>
-                            <option value="Gyorskorcsolya">⚡ Gyorskorcsolya</option>
+                            <option value="Hoki">🏒 Hoki 🏒</option>
+                            <option value="Műkorcsolya">❄️ Műkorcsolya ❄️</option>
+                            <option value="Gyerek">👦 Gyerek 👧</option>
                         </select>
 
                         <select 
@@ -122,7 +125,7 @@ const SkateList = () => {
                             style={{padding:'10px'}}
                         >
                             {[...Array(16)].map((_, i) => (
-                                <option key={i} value={30 + i}>{30 + i}-es méret</option>
+                                <option key={i} value={30 + i}>{30 + i}</option>
                             ))}
                         </select>
 
@@ -142,7 +145,7 @@ const SkateList = () => {
             <div className="grid">
                 {skates.map(skate => (
                     <div key={skate.id} className={`card ${skate.available ? 'available' : 'rented'}`}>
-                        <div className="icon">{skate.type.includes('Hoki') ? '🏒' : '⛸️'}</div>
+                        <div className="icon">{getSkateIcon(skate.type)}</div>
                         <h4>{skate.type}</h4>
                         <p>Méret: <strong>{skate.size}</strong></p>
                         <p>Szín: {skate.color}</p>

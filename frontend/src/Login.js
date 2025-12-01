@@ -17,8 +17,6 @@ const Login = () => {
                 username,
                 password
             });
-
-            // Adatok mentése a böngészőbe
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('role', response.data.role);
             localStorage.setItem('username', response.data.username);
@@ -32,7 +30,7 @@ const Login = () => {
     return (
         <div className="container center-screen">
             <div className="card login-card">
-                  <h2>⛸️KoriKer⛸️ -Korcsolya Kölcsönző</h2>
+                  <h2>⛸️KoriKer⛸️ Korcsolya Kölcsönző</h2>
                 <form onSubmit={handleLogin} className="form-box">
                     <input
                         type="text"
