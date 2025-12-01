@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link} from 'react-router-dom';
 import './App.css';
+
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -31,18 +32,18 @@ const Login = () => {
     return (
         <div className="container center-screen">
             <div className="card login-card">
-                <h2>⛸️KoriKer⛸️ -Korcsolya Kölcsönző</h2>
+                  <h2>⛸️KoriKer⛸️ -Korcsolya Kölcsönző</h2>
                 <form onSubmit={handleLogin} className="form-box">
                     <input
                         type="text"
-                        placeholder="Felhasználónév (pl. admin)"
+                        placeholder="Felhasználónév"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />
                     <input
                         type="password"
-                        placeholder="Jelszó (pl. admin)"
+                        placeholder="Jelszó"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
@@ -50,6 +51,9 @@ const Login = () => {
                     <button type="submit">Belépés</button>
                     {error && <p className="error">{error}</p>}
                 </form>
+                <p style={{marginTop: '20px'}}>
+                    Nincs még fiókod? <Link to="/register">Regisztrálj itt!</Link>
+                </p>
             </div>
         </div>
     );
