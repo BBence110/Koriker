@@ -71,7 +71,7 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
 
-    // React (localhost:3000) engedélyezése
+    //localhost:3000 engedélyezése
 @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();

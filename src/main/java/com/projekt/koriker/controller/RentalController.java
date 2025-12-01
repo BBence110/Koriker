@@ -27,7 +27,6 @@ public class RentalController {
 
     @PostMapping("/rent/{skateId}")
     public ResponseEntity<?> rentSkate(@PathVariable Long skateId) {
-        // JWT Filterből tudjuk a bejelentkezetzt felhasznalot
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
 
@@ -39,7 +38,6 @@ public class RentalController {
         }
     }
 
-    //saját kölcsönzések lekérése
     @GetMapping("/my")
     public ResponseEntity<List<RentalDto>> myRentals() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -48,7 +46,6 @@ public class RentalController {
         return ResponseEntity.ok(rentalService.findRentalsByUsername(username));
     }
 
-    //visszavétel
     @PostMapping("/return/{rentalId}")
     public ResponseEntity<?> returnSkate(@PathVariable Long rentalId) {
         try {

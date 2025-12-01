@@ -32,7 +32,6 @@ public class DataInitializer implements CommandLineRunner {
             admin.setPhoneNumber("36701123344");
             admin.setRole("ROLE_ADMIN");
             userRepository.save(admin);
-            System.out.println(">>> ADMIN LÉTREHOZVA: admin / admin");
         }
 
         // User: user-user
@@ -44,14 +43,15 @@ public class DataInitializer implements CommandLineRunner {
             user.setPhoneNumber("36209998877");
             user.setRole("ROLE_USER");
             userRepository.save(user);
-            System.out.println(">>> USER LÉTREHOZVA: user / user");
         }
 
         if (skateRepository.count() == 0) {
             skateRepository.save(new SkateEntity(38, "Műkorcsolya", "Fehér", true));
+            skateRepository.save(new SkateEntity(40, "Műkorcsolya", "Rózsaszín", true));
+            skateRepository.save(new SkateEntity(36, "Műkorcsolya", "Bordó", true));
             skateRepository.save(new SkateEntity(42, "Hoki", "Fekete", true));
             skateRepository.save(new SkateEntity(44, "Hoki", "Kék", true));
-            System.out.println(">>> KORCSOLYÁK LÉTREHOZVA");
+            skateRepository.save(new SkateEntity(43, "Hoki", "Fehér-Piros", true));
         }
     }
 }

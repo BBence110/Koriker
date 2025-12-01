@@ -26,8 +26,7 @@ public class SkateController {
     public SkateController(SkateService skateService) {
         this.skateService = skateService;
     }
-
-    //korcsolyák kiratása
+    
     @GetMapping
     public ResponseEntity<List<SkateDto>> listSkates() {
         return ResponseEntity.ok(skateService.findAllSkates());
