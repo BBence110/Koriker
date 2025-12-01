@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+//import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +18,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name="rentals")
 public class RentalEntity {
 
@@ -37,6 +36,13 @@ public class RentalEntity {
     private LocalDateTime rentalStart;
     private LocalDateTime rentalEnd;
     private boolean active; 
+
+    public RentalEntity(UserEntity user, SkateEntity skate, LocalDateTime rentalStart){
+        this.user=user;
+        this.skate=skate;
+        this.rentalEnd=rentalStart;
+        this.active=true;
+    }
 
     
 }
