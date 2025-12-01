@@ -1,27 +1,13 @@
 package com.projekt.koriker.service;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import com.projekt.koriker.data.entity.UserEntity;
-import com.projekt.koriker.data.repository.UserRepository;
+//import com.projekt.koriker.data.entity.UserEntity;
+//import com.projekt.koriker.data.repository.UserRepository;
+import com.projekt.koriker.service.dto.UserDto;
 
 @Service
-public class UserService {
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
-
-public void RegisterUser(UserEntity user){
-    user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-    if (user.getRole()==null || user.getRole().isEmpty()){
-            user.setRole("USER");
-    }
-    userRepository.save(user);
-    }
+public interface UserService {
+    void registerUser(UserDto userDto);
+    UserDto findByUsername(String username);
 }
