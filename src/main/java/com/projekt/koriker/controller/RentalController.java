@@ -27,7 +27,7 @@ public class RentalController {
 
     @PostMapping("/rent/{skateId}")
     public ResponseEntity<?> rentSkate(@PathVariable Long skateId) {
-        // A JWT Filterből tudjuk a bejelentkezetzt felhasznalot
+        // JWT Filterből tudjuk a bejelentkezetzt felhasznalot
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
 
