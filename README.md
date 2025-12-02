@@ -34,5 +34,5 @@ A projekt gyökérkönyvtárában terminálon futtasd a következő parancsot:
 A projekt gyökérkönyvtárában terminálon futtasd a következő parancsot:
 
 cd frontend
-npm install
+npm install  ||
 npm start
