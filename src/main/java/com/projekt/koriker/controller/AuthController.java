@@ -35,15 +35,29 @@ public class AuthController {
         );
 
         if (authentication.isAuthenticated()) {
-            String token = jwtUtils.generateToken(loginRequest.getUsername());
+            var userDetails = (org.springframework.security.core.userdetails.UserDetails) authentication.getPrincipal();
+            
+            //String token = jwtUtils.generateToken(loginRequest.getUsername());
             
             UserDto user = userService.findByUsername(loginRequest.getUsername());
             
+            String token = jwtUtils.generateToken(loginRequest.getUsername(),
+            java.util.Map.of(
+                "isEnabled", userDetails.isEnabled(),
+                "getUsername", userDetails.getUsername(),
+                "isAccountNonLocked", userDetails.isAccountNonLocked(),
+                "isAccountNonExpired", userDetails.isAccountNonExpired(),
+                "isCredentialsNonExpired", userDetails.isCredentialsNonExpired(),
+                "role", user.getRole()
+            ));
+
+
             Map<String, String> response = new HashMap<>();
             response.put("token", token);
             response.put("role", user.getRole());
             response.put("username", user.getUsername());
             
+    
             return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.status(401).body("Hibás felhasználónév vagy jelszó");
